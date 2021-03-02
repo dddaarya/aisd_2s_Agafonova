@@ -1,0 +1,85 @@
+#include "iostream"
+using namespace std;
+int main(){
+int n;
+cin >> n;
+int a, s;
+for(int i = 0; i < n; i++){
+    cin >> a;
+    s += a;
+}
+cout << s;
+    return 0;
+}
+
+////////////////////////////////////////////////////////////////
+
+
+
+#include <math.h>
+#include <iostream>
+
+int main()
+{
+    int a, b, c;
+    std::cin >> a >> b >> c;
+
+    double d = b * b - (4 * a * c);
+    double root1, root2;
+
+    if (d < 0)
+       std::cout << -1;
+
+   root1 = (-b + sqrt(d)) / 2*a;
+   root2 = (-b - sqrt(d)) / 2*a;
+
+   std::cout << root1 << " " << root2;
+}
+
+/////////////////////////////////////////////////////////////////////
+
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int l(int x, int y, int count)
+{
+    y = y * 2;
+   ++count;
+   if (y < x) {
+       return l(x, y, count);
+   }
+    else {
+        return count;
+    }
+}
+int main(){
+
+    int x;
+    cin>>x;
+    cout<<l(x, 2, 0)<<endl;
+    return 0;
+}
+
+/////////////////////////////////////////////////////
+
+#include<iostream>
+using namespace std;
+
+int power(int x, unsigned p)
+{
+    int answ = 1;
+    for (int i = 1; i <= p; ++i)
+    {
+        answ = answ * x;
+    }
+    return answ;
+}
+
+int main()
+{
+    int x, p;
+    cin>>x>>p;
+    cout<<power(x, p)<<endl;
+    return 0;
+}
