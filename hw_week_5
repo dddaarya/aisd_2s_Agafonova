@@ -1,0 +1,149 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+struct  Node{
+    int item;
+    Node * next = 0;
+    Node * last = 0;
+};
+
+struct Stack
+{
+    Node * phead = 0;
+    Node * pass = 0;
+
+    void Push(int item){
+        Node * fr = phead;
+        int i = 0;
+
+
+        if (!phead){
+            Node * node = new Node;
+            node->item = item;
+            node->next = 0;
+            node->last = 0;
+            phead = node;
+            pass = node;
+        }
+        else if (item <= fr->item){
+                Node * node = new Node;
+                node->item = item;
+                fr->last = node;
+                node->next = fr;
+                phead = node;
+            }
+
+        else{
+            while (fr){
+
+                if (item <= fr->item){
+                    Node * node = new Node;
+                    node->item = item;
+                    node->next = fr;
+                    node->last = fr->last;
+                    fr->last->next = node;
+                    fr->last = node;
+                    break;
+                }
+
+                if (fr->next){
+                    fr = fr->next;
+                }
+                else{
+                    Node * node = new Node;
+                    node->item = item;
+                    fr->next = node;
+                    node->last = fr;
+                    pass = node;
+                    break;
+                }
+
+
+
+
+
+
+
+            }
+        }
+    }
+    void PrntAll(){
+        Node * fr = phead;
+        while(fr){
+            cout << fr->item << " ";
+            if (fr->next){
+                fr = fr->next;
+            }
+            else{
+                break;
+
+            }
+        }
+    }
+
+    int get(int i){
+        int elem;
+        int el = 0;
+        Node * fr = phead;
+        while (fr){
+            el += 1;
+            if (el == i){
+                elem = fr->item;
+                break;
+
+            }
+            if (fr->next)
+                {
+                    fr = fr->next;
+                }
+
+        }
+
+
+        return elem;
+    }
+
+    void removeAt(int ind){
+        Node * fr = phead;
+        int x = 0;
+        while (fr){
+            x += 1;
+            if (x == ind)
+              {
+                if (fr->last)
+                {
+                    if (fr->next)
+                    {
+                        fr->last->next = fr->next;
+                        fr->next->last = fr->last;
+                        delete fr;
+
+                    }
+                    else
+                    {
+                        delete fr;
+                    }
+                }
+                else
+                {
+                    phead = fr->next;
+                    delete fr;
+                }
+                break;
+
+            }
+            if (fr->next)
+                {
+                    fr = fr->next;
+                }
+
+
+        }
+
+    }
+};
+
+int main(){
+    return 0;
+}
